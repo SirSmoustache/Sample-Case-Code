@@ -8,7 +8,7 @@ char auth[] = "3246478cc289446ea857fdf0c9210a13";
 char ssid[] = "ASUS_X00TD";
 char pass[] = "devararozan";
 
-#define DHTPIN 18 // What digital pin we're connected to
+#define DHTPIN 18
 
 #define DHTTYPE DHT11     // DHT 11
 //#define DHTTYPE DHT22   // DHT 22, AM2302, AM2321
@@ -26,8 +26,6 @@ void sendSensor()
     Serial.println("Failed to read from DHT sensor!");
     return;
   }
-  // You can send any value at any time.
-  // Please don't send more that 10 values per second.
   Blynk.virtualWrite(V5, h);
   Blynk.virtualWrite(V6, t);
 }
@@ -41,7 +39,6 @@ void setup()
   
   dht.begin();
 
-  // Setup a function to be called every second
   timer.setInterval(1000L, sendSensor);
 }
 
